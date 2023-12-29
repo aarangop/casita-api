@@ -1,0 +1,29 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Casita API",
+    "description": "API for my Casita household management app"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:undefined",
+      "description": "dev server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
