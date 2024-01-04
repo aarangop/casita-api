@@ -1,0 +1,36 @@
+{
+  street: {
+    required: true,
+    bsonType: "string",
+    minLength: 2,
+    maxLength: 50
+  },
+  houseNumber: {
+    required: true,
+    bsonType: "string",
+    maxLength: 10
+  },
+  zipCode: {
+    required: false,
+    bsonType: "string",
+    minLength: 3,
+    maxLength: 10
+  },
+  city: {
+    required: true,
+    bsonType: "string",
+    minLength: 2,
+    maxLength: 50
+  },
+  country: {
+    required: true,
+    bsonType: "string",
+    minLength: 3,
+    maxLength: 50
+  },
+  ownerId: {
+    required: true,
+    bsonType: "objectId",
+    description: "Reference to the user who owns this household."
+  }
+}

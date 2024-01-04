@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const mongoose = require("mongoose");
+const { connectDb } = require("./db/conn");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const OpenApiValidator = require("express-openapi-validator");
@@ -27,22 +27,30 @@ const corsOptions = {
 let indexRouter = require("./routes/index");
 let usersRouter = require("./routes/users");
 let householdsRouter = require("./routes/households");
+const { connect } = require("mongoose");
 
 const app = express();
-
-// Connect to database
-mongoose
-  .connect(process.env.MONGODB_CONNSTR)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("Error connecting to MongoDB:", err.message);
-  });
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+
+// Add middleware to connect to the database if not done already
+// and attach the database to the request object.
+const connectionString = process.env.MONGODB_CONNSTR;
+let db;
+app.use(async (req, res, next) => {
+  if (!db) {
+    try {
+      db = await connectDb(connectionString);
+      console.log("Connected to MongoDB");
+    } catch (e) {
+      console.error("Error connecting to MongoDB");
+    }
+  }
+  req.db = db;
+  next();
+});
 
 app.use(logger("dev"));
 app.use(express.json());

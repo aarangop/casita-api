@@ -2,8 +2,8 @@ openapi: 3.0.0
 servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/SMARTBEARD192M/Casita/1.0.0
-  - url: http://localhost:8001
-    description: Develpment server
+  - description: Development server
+    url: http://localhost:8001
 info:
   description: API for my Casita household management app
   version: "1.0.0"
@@ -20,13 +20,13 @@ tags:
 paths:
   /households:
     get:
+      operationId: getUserHouseholds
       tags:
         - households
       summary: Get all households associated to a user
-      operationId: getUserHouseholds
       parameters:
         - name: userId
-          in: path
+          in: query
           description: Id of the household owner, whose households will be returned
           required: true
           schema:
@@ -45,14 +45,36 @@ paths:
           description: Internal server error
         '400':
           description: Invalid owner ID
+    post:
+      operationId: createHousehold
+      tags:
+        - households
+      summary: Create a new household
+      requestBody:
+        description: Household data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Household'
+      responses:
+        '204':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsertedId'
+        '400':
+          description: Validation error or bad request
+        '500':
+          description: Internal server error
 components:
   schemas:
     Household:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
+          type: string
         ownerId:
           type: integer
           format: int64
@@ -66,3 +88,13 @@ components:
           type: string
         country:
           type: string
+      required:
+        - ownerId
+        - street
+        - houseNumber
+    InsertedId:
+      type: object
+      properties:
+        insertedId:
+          type: string
+          description: ID of a newly inserted document to MongoDB

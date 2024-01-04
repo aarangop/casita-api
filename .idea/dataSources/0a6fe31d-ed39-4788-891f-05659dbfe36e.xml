@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="mongodb cloud">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.51">
+    <root id="1">
+      <ServerVersion>6.0.12</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="admin"/>
+    <schema id="3" parent="1" name="casita"/>
+    <schema id="4" parent="1" name="local"/>
+    <schema id="5" parent="1" name="test">
+      <Current>1</Current>
+      <LastIntrospectionLocalTimestamp>2024-01-04.10:18:48</LastIntrospectionLocalTimestamp>
+    </schema>
+    <table id="6" parent="5" name="households"/>
+    <table id="7" parent="5" name="users"/>
+    <column id="8" parent="6" name="_id">
+      <DasType>ObjectId|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="9" parent="6" name="__v">
+      <DasType>Int32|4s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="10" parent="6" name="houseNumber">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="11" parent="6" name="street">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="12" parent="6" name="city">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="13" parent="6" name="country">
+      <DasType>String|12s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="14" parent="7" name="_id">
+      <DasType>ObjectId|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="15" parent="7" name="email">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="16" parent="7" name="lastName">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="17" parent="7" name="username">
+      <DasType>String|12s</DasType>
+      <Position>1</Position>
+    </column>
+    <column id="18" parent="7" name="__v">
+      <DasType>Int32|4s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="19" parent="7" name="firstName">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="20" parent="7" name="password">
+      <DasType>String|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="21" parent="7" name="role">
+      <DasType>String|12s</DasType>
+      <Position>3</Position>
+    </column>
+  </database-model>
+</dataSource>
